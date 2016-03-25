@@ -101,6 +101,7 @@ const schema = new _graphql.GraphQLSchema({
   query: new _graphql.GraphQLObjectType({
     name: 'RootQueryType',
     fields: {
+      node: nodeField,
       userProfiles: {
         type: new _graphql.GraphQLList(UserProfileType),
         resolve: () => _userProfiles2.default
