@@ -82,21 +82,6 @@ let UserProfileType = new _graphql.GraphQLObjectType({
   })
 });
 
-let xUserProfileType = new _graphql.GraphQLObjectType({
-  name: 'UserProfile',
-  description: 'A user profile',
-  fields: () => ({
-    id: {
-      type: _graphql.GraphQLString,
-      description: 'The id of this UserProfile'
-    },
-    name: {
-      type: _graphql.GraphQLString,
-      description: 'The name of this user'
-    }
-  })
-});
-
 const schema = new _graphql.GraphQLSchema({
   query: new _graphql.GraphQLObjectType({
     name: 'RootQueryType',

@@ -16,8 +16,11 @@ var _expressGraphql2 = _interopRequireDefault(_expressGraphql);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+let directoryToServe = process.argv[2] || 'public';
 let app = (0, _express2.default)();
 const PORT = 3000;
+
+app.use(_express2.default.static(directoryToServe));
 
 app.use('/graphql', (0, _expressGraphql2.default)({
   schema: _schema2.default,

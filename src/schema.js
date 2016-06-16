@@ -83,23 +83,6 @@ let UserProfileType = new GraphQLObjectType({
 
 
 
-
-let xUserProfileType = new GraphQLObjectType({
-  name: 'UserProfile',
-  description: 'A user profile',
-  fields: () => ({
-    id: {
-      type: GraphQLString,
-      description: 'The id of this UserProfile'
-    },
-    name: {
-      type: GraphQLString,
-      description: 'The name of this user'
-    }
-  })
-});
-
-
 const schema = new GraphQLSchema({
   query: new GraphQLObjectType({
     name: 'RootQueryType',
@@ -108,6 +91,9 @@ const schema = new GraphQLSchema({
       userProfiles: {
         type: new GraphQLList(UserProfileType),
         resolve: () => userProfiles
+      },
+      companyProfiles: {
+
       }
     }
   })

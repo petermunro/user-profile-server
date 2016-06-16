@@ -4,10 +4,11 @@ import schema from './schema';
 import { graphql } from 'graphql';
 import graphqlHTTP from 'express-graphql';
 
-
+let directoryToServe = process.argv[2] || 'public';
 let app  = express();
 const PORT = 3000;
 
+app.use(express.static(directoryToServe));
 
 app.use('/graphql', graphqlHTTP({
   schema: schema,
