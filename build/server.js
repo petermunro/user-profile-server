@@ -16,9 +16,9 @@ var _expressGraphql2 = _interopRequireDefault(_expressGraphql);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-let directoryToServe = process.argv[2] || 'public';
-let app = (0, _express2.default)();
-const PORT = 3000;
+var directoryToServe = process.argv[2] || 'public';
+var app = (0, _express2.default)();
+var PORT = 3000;
 
 app.use(_express2.default.static(directoryToServe));
 
@@ -27,9 +27,9 @@ app.use('/graphql', (0, _expressGraphql2.default)({
   graphiql: true
 }));
 
-let server = app.listen(PORT, function () {
-  let host = server.address().address;
-  let port = server.address().port;
+var server = app.listen(PORT, function () {
+  var host = server.address().address;
+  var port = server.address().port;
 
   console.log('GraphQL listening at http://%s:%s', host, port);
 });

@@ -21,7 +21,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * The second defines the way we resolve an object to its GraphQL type.
  */
 
-var _nodeDefinitions = (0, _graphqlRelay.nodeDefinitions)(globalId => {
+var _nodeDefinitions = (0, _graphqlRelay.nodeDefinitions)(function (globalId) {
   var _fromGlobalId = fromGlobalId(globalId);
 
   var type = _fromGlobalId.type;
@@ -34,7 +34,7 @@ var _nodeDefinitions = (0, _graphqlRelay.nodeDefinitions)(globalId => {
   } else {
     return null;
   }
-}, obj => {
+}, function (obj) {
   if (obj instanceof User) {
     return userType;
   } else if (obj instanceof Widget) {
@@ -48,48 +48,54 @@ var nodeInterface = _nodeDefinitions.nodeInterface;
 var nodeField = _nodeDefinitions.nodeField;
 
 
-const LocationType = new _graphql.GraphQLObjectType({
+var LocationType = new _graphql.GraphQLObjectType({
   name: 'Location',
   description: 'A location',
-  fields: () => ({
-    city: {
-      type: _graphql.GraphQLString,
-      description: 'The user\'s city'
-    },
-    country: {
-      type: _graphql.GraphQLString,
-      description: 'The user\'s country'
-    }
-  })
+  fields: function fields() {
+    return {
+      city: {
+        type: _graphql.GraphQLString,
+        description: 'The user\'s city'
+      },
+      country: {
+        type: _graphql.GraphQLString,
+        description: 'The user\'s country'
+      }
+    };
+  }
 });
 
 /**
  * This is the type that will be the root of our query,
  * and the entry point into our schema.
  */
-let UserProfileType = new _graphql.GraphQLObjectType({
+var UserProfileType = new _graphql.GraphQLObjectType({
   name: 'UserProfile',
   description: 'A user profile',
-  fields: () => ({
-    name: {
-      type: _graphql.GraphQLString,
-      description: 'The name of this user'
-    },
-    location: {
-      type: LocationType,
-      description: 'The user\'s location'
-    }
-  })
+  fields: function fields() {
+    return {
+      name: {
+        type: _graphql.GraphQLString,
+        description: 'The name of this user'
+      },
+      location: {
+        type: LocationType,
+        description: 'The user\'s location'
+      }
+    };
+  }
 });
 
-const schema = new _graphql.GraphQLSchema({
+var schema = new _graphql.GraphQLSchema({
   query: new _graphql.GraphQLObjectType({
     name: 'RootQueryType',
     fields: {
       node: nodeField,
       userProfiles: {
         type: new _graphql.GraphQLList(UserProfileType),
-        resolve: () => _userProfiles2.default
+        resolve: function resolve() {
+          return _userProfiles2.default;
+        }
       }
     }
   })

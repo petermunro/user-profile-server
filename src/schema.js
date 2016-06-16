@@ -91,9 +91,6 @@ const schema = new GraphQLSchema({
       userProfiles: {
         type: new GraphQLList(UserProfileType),
         resolve: () => userProfiles
-      },
-      companyProfiles: {
-
       }
     }
   })
